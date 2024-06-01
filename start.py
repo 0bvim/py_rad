@@ -17,6 +17,21 @@ while True:
     event, values = window.read()
     print(values)
 
+    if event == 'Adicionar':
+        data.append([values[Title[0]], values[Title[1]], values[Title[2]]])
+        window['tabela'].update(values=data)
+        for i in range(3):
+            window[Title[i]].update(value='')
+
+    if event == 'Editar':
+        if values['tabela'] == []:
+            sg.popup('Nenhuma linha selecionada')
+        else:
+            editarLinha=values['tabela'][0]
+            sg.popup('Editar linha selecionada')
+            for i in range(3):
+                window[Title[i]].update(value=data[editarLinha][i])
+
     if event in (sg.WIN_CLOSED, 'Sair'):
         break
 
